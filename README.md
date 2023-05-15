@@ -1,12 +1,13 @@
 # How To Download
      
-     If you want to download this python CLI, then you must 
-     download Setup.exe from itch.io
+If you want to download this python CLI, then you must 
+download Setup.exe from itch.io
 
 # How To Use
-      If you want to use this application/CLI from python.
-      You must have the libraries listed in the 
-      ImportedLibraries.txt
+
+If you want to use this application/CLI from python.
+You must have the libraries listed in the 
+ImportedLibraries.txt
 
   
 
