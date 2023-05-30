@@ -11,15 +11,15 @@ import sys
 import datetime
 import shutil
 
+
 class ShellStats:
       
       name = "PyConsole"
-      Version = "0.0.4"
+      Version = "0.0.5"
       Producer = "PythonCMD Inc." # Disclamer, this is not a real company.
       Copyrighted = False
-      CopyrightText = "" # Will Change if Copyrighted Is True.
-    
-  
+      CopyrightText = "" # Will Change if Copyrighted Is True.  
+
 class PyConsole(cmd.Cmd):
 
     intro = 'Welcome to PyShell Type help or ? to list commands.\n'
@@ -28,11 +28,23 @@ class PyConsole(cmd.Cmd):
     global Launch_Security
     Launch_Security = True
 
+
+    def do_amountCMD(self, arg):
+        """Says how many commands there are.
+        """
+
+        COMMANDS = ["amountCMD","TASKLIST","settings","launch","show_os_name","whoami","show_computer_stats","remove_from_path","add_to_path",
+              "file_differences","grep","chmod","kill","edit","move_file","copy_file","copy_data","file_stats","time","env",
+              "create_file","cd","echo","rename_file","quit","ls_format","clear","ls","read","mkdir","rmfil","rmdir","credits"]
+
+        print(len(COMMANDS))
+
     def do_downloadversion(self, arg):
         if arg == "0.0.3":
             print("This feature is new.")
             raise AttributeError("No such attribute named 'downloadversion'. Check the documents found in the README.md")
-
+            
+        
     def do_TASKLIST(self, arg):
         """Shows every working task.
 
@@ -238,17 +250,23 @@ class PyConsole(cmd.Cmd):
                 import subprocess
 
         """
-        To_Look = input("What do you want the word to be found? ")
-        command = f"findstr {To_Look} {arg}"
 
-        if len(To_Look) == 0:
-            print("Needs a word.")
+        try:
+            To_Look = input("What do you want the word to be found? ")
+            
+            
+            if len(To_Look) == 0:
+                print("Needs a word.")
+                
+            elif To_Look.isspace():
+                print("Requires a word not blank.")
 
-        elif To_Look.isspace():
-            print("Requires a word not blank.")
-
-        results = subprocess.check_output(command,shell=True).decode()
-        print(results)
+            else:   
+                command = f"findstr {To_Look} {arg}"
+                results = subprocess.check_output(command,shell=True).decode()
+                print(results)
+        except:
+            pass
 
     def do_chmod(self, arg):
         """Changes the permission of the selected file
@@ -618,7 +636,7 @@ class PyConsole(cmd.Cmd):
 
     def precmd(self, line):
         if line.strip() == "--version":
-            print("Version is 1.0.1")
+            print("Version is 0.0.3")
             return ""
         elif line.strip() == "ls --format":
             arg = input("Pick your letter: ")
