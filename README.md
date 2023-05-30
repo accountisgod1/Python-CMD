@@ -1,13 +1,12 @@
 # How To Download
      
-If you want to download this python CLI, then you must 
-download Setup.exe from itch.io
+     If you want to download this python CLI, then you must 
+     download Setup.exe from itch.io
 
 # How To Use
-
-If you want to use this application/CLI from python.
-You must have the libraries listed in the 
-ImportedLibraries.txt
+      If you want to use this application/CLI from python.
+      You must have the libraries listed in the 
+      ImportedLibraries.txt
 
   
 
@@ -32,11 +31,34 @@ The cannot launch application (CLA Error) happens when the CLI (Command Line Int
 
 ```mermaid
 graph LR
-A(Error Handler) --> B(Firing Print)
+A(CLI) --> B(Error Handler)
 
-A --> C(Raising Error)
+B --> C(Raising Error)
 
-C --> D(Ends Command)
+B --> D(Ends Command)
 
-C --> B
+C --> D
+
+B --> F(Firing Print) 
+
+D --> G(Restarting)
+
+G --> A
+
+
+```
+If C Successfully Fired,  Then It Will End The Command.
+
+```mermaid
+sequenceDiagram
+
+participant Error Handler
+participant CLI
+
+activate CLI
+CLI ->> ErrorHandler: Controls
+
+activate ErrorHandler
+ErrorHandler And RaisingError ->> EndsCommand:  Requesting End Command
+
 ```
